@@ -122,7 +122,7 @@ $locations = Get-AzLocation | Where-Object {
 }
 $max_index = $locations.Count - 1
 $rand = (0..$max_index) | Get-Random
-$random_location = $locations.Get($rand).Location
+$random_location = "eastus"
 
 Write-Host "Try to create a SQL Database resource to test for capacity constraints";
 # Try to create a SQL Databasde resource to test for capacity constraints
