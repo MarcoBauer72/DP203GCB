@@ -1,6 +1,3 @@
-﻿Set-ExecutionPolicy Unrestricted
-			
-cd C:\dp-203\data-engineering-ilt-deployment\Allfiles\00\artifacts\environment-setup\automation\
 
 
 # Import modules
