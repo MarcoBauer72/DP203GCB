@@ -122,7 +122,7 @@ $locations = Get-AzLocation | Where-Object {
 }
 $max_index = $locations.Count - 1
 $rand = (0..$max_index) | Get-Random
-$random_location = "eastus2"
+$random_location = "eastus"
 
 Write-Host "Try to create a SQL Database resource to test for capacity constraints";
 # Try to create a SQL Databasde resource to test for capacity constraints
@@ -143,7 +143,7 @@ while ($success -ne 1){
       $tried_list.Add($random_location)
       $locations = $locations | Where-Object {$_.Location -notin $tried_list}
       $rand = (0..$($locations.Count - 1)) | Get-Random
-      $random_location = "brazilsouth"
+      $random_location = "westus"
     }
 }
 Remove-AzSqlServer -ResourceGroupName $resourceGroupName -ServerName $testServer | Out-Null
