@@ -55,7 +55,7 @@ write-host "User Name: $userName"
 $userId = az ad signed-in-user show --query objectId -o tsv
 Write-Host "User ID: $userId"
 
-$resourceGroupName = Read-Host "Enter the name of the resource group containing your Synapse Analytics workspace";
+$resourceGroupName = "data-engineering-synapse"
         
 $userName = ((az ad signed-in-user show) | ConvertFrom-JSON).UserPrincipalName
         
