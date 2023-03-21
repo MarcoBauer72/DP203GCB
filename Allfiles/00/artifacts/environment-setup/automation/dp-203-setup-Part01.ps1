@@ -11,9 +11,6 @@ $dataflowsPath = "..\dataflows"
 $pipelinesPath = "..\pipelines"
 $sqlScriptsPath = "..\sql"
 
-# User must sign in using az login
-Write-Host "Sign into Azure using your credentials.."
-az login
 
 # Now sign in again for PowerShell resource management and select subscription
 Write-Host "Now sign in again to allow this script to create resources..."
@@ -60,29 +57,8 @@ Write-Host "User ID: $userId"
 
 # Prompt user for a password for the SQL Database
 write-host ""
-$sqlPassword = ""
+$sqlPassword = "Pa55w.rdPa55w.rd"
 $complexPassword = 0
-
-while ($complexPassword -ne 1)
-{
-    $sqlPassword = Read-Host "Enter a password for the Azure SQL Database.
-    `The password must meet complexity requirements:
-    ` - Minimum 8 characters. 
-    ` - At least one upper case English letter [A-Z
-    ` - At least one lower case English letter [a-z]
-    ` - At least one digit [0-9]
-    ` - At least one special character (!,@,#,%,^,&,$)
-    ` "
-
-    if(($sqlPassword -cmatch '[a-z]') -and ($sqlPassword -cmatch '[A-Z]') -and ($sqlPassword -match '\d') -and ($sqlPassword.length -ge 8) -and ($sqlPassword -match '!|@|#|%|^|&|$'))
-    {
-        $complexPassword = 1
-    }
-    else
-    {
-        Write-Output "$sqlPassword does not meet the compexity requirements."
-    }
-}
 
 
 # Register resource providers
@@ -101,13 +77,13 @@ Register-AzResourceProvider -ProviderNamespace Microsoft.Compute
 # Generate a random suffix for unique Azure resource names
 [string]$suffix =  -join ((48..57) + (97..122) | Get-Random -Count 7 | % {[char]$_})
 Write-Host "Your randomly-generated suffix for Azure resources is $suffix"
-$resourceGroupName = "data-engineering-synapse-$suffix"
+$resourceGroupName = "data-engineering-synapse"
 
 # Select a random location that supports the required resource providers
 # (required to balance resource capacity across regions)
 Write-Host "Selecting a region for deployment..."
 
-$preferred_list = "australiaeast","northeurope", "southeastasia","uksouth","westeurope","westus","westus2"
+$preferred_list = "westus"
 $locations = Get-AzLocation | Where-Object {
     $_.Providers -contains "Microsoft.Synapse" -and
     $_.Providers -contains "Microsoft.Databricks" -and
@@ -122,7 +98,7 @@ $locations = Get-AzLocation | Where-Object {
 }
 $max_index = $locations.Count - 1
 $rand = (0..$max_index) | Get-Random
-$random_location = "eastus"
+$random_location = "westus"
 
 Write-Host "Try to create a SQL Database resource to test for capacity constraints";
 # Try to create a SQL Databasde resource to test for capacity constraints
