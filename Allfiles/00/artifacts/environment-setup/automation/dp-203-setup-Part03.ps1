@@ -1,6 +1,6 @@
-﻿Set-ExecutionPolicy Unrestricted
-			
-cd C:\dp-203\data-engineering-ilt-deployment\Allfiles\00\artifacts\environment-setup\automation\
+$resourceGroupName = "data-engineering-synapse"
+$suffix = "a1b2c3d4"
+$random_location = "westus"
 
 # Import modules
 Import-Module Az.CosmosDB
