@@ -7,10 +7,10 @@ Import-Module "..\solliance-synapse-automation"
 $templatesPath = "..\templates"
 
 # Add Values from the first setup script here
+$resourceGroupName = "data-engineering-synapse"
+$suffix = "a1b2c3d4"
+$random_location = "westus"
 
-# User must sign in using az login
-Write-Host "Sign into Azure using your credentials.."
-az login
 
 # Now sign in again for PowerShell resource management and select subscription
 Write-Host "Now sign in again to allow this script to create resources..."
@@ -25,7 +25,7 @@ if(-not ([string]::IsNullOrEmpty($selectedSub)))
 Write-Information "Copy Data"
 Write-Host "Uploading data to Azure..."
 
-$dataLakeAccountName = "asadatalake345gkzy"
+$dataLakeAccountName = "asadatalakea1b2c3d4"
 
 Ensure-ValidTokens $true
 
