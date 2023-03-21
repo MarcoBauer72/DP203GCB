@@ -25,7 +25,9 @@ if(-not ([string]::IsNullOrEmpty($selectedSub)))
 Write-Information "Copy Data"
 Write-Host "Uploading data to Azure..."
 
-$dataLakeAccountName = "asadatalakea1b2c3d4"
+$workspaceName = "asaworkspace$($suffix)"
+$dataLakeAccountName = "asadatalake$($suffix)"
+
 
 Ensure-ValidTokens $true
 
