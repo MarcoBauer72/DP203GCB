@@ -75,8 +75,7 @@ Register-AzResourceProvider -ProviderNamespace Microsoft.Storage
 Register-AzResourceProvider -ProviderNamespace Microsoft.Compute
 
 # Generate a random suffix for unique Azure resource names
-[string]$suffix =  -join ((48..57) + (97..122) | Get-Random -Count 7 | % {[char]$_})
-Write-Host "Your randomly-generated suffix for Azure resources is $suffix"
+$suffix = "a1b2c3d4"
 $resourceGroupName = "data-engineering-synapse"
 
 # Select a random location that supports the required resource providers
@@ -99,8 +98,6 @@ $locations = Get-AzLocation | Where-Object {
 $max_index = $locations.Count - 1
 $rand = (0..$max_index) | Get-Random
 $random_location = "westus"
-
-$suffix = "a1b2c3d4"
 
 Write-Host "Try to create a SQL Database resource to test for capacity constraints";
 # Try to create a SQL Databasde resource to test for capacity constraints
