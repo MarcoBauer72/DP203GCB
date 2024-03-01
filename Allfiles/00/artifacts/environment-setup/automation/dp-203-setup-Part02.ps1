@@ -1,8 +1,5 @@
 
 
-# Import modules
-Import-Module "..\solliance-synapse-automation"
-
 # Paths
 $templatesPath = "..\templates"
 
@@ -18,7 +15,7 @@ Connect-AzAccount
 
 if(-not ([string]::IsNullOrEmpty($selectedSub)))
 {
-    Select-AzSubscription -SubscriptionId $selectedSub
+    Select-AzSubscription -SubscriptionId "ce3ee0e4-0788-44be-a61c-9232dad526dc"
 }
 
 
