@@ -13,7 +13,9 @@ $random_location = "westus"
 
 # Now sign in again for PowerShell resource management and select subscription
 Write-Host "Now sign in again to allow this script to create resources..."
-Connect-AzAccount
+$Credential = Get-Credential
+Connect-AzAccount -Credential $Credential
+
 
 if(-not ([string]::IsNullOrEmpty($selectedSub)))
 {
