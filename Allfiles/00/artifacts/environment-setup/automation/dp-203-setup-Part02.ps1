@@ -1,4 +1,6 @@
-
+﻿# Import modules
+Import-Module Az.CosmosDB
+Import-Module "..\solliance-synapse-automation"
 
 # Paths
 $templatesPath = "..\templates"
